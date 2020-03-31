@@ -10,10 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".pricipal_home"></activity>
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Datos_Usuario"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Home_activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".PresentacionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
