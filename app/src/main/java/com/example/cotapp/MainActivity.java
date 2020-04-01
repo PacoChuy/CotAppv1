@@ -98,5 +98,10 @@ public class MainActivity extends AppCompatActivity {
     txt_Password.setText(preferences.getString("password","Password"));
         
     }
+    public void registro_usuario (View view ){
+        Intent datos = new Intent(this, Registro_Usuario_Activity.class);
+        startActivity(datos);
+    }
+
 
 }
