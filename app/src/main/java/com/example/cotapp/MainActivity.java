@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 usuario=txt_Usuario.getText().toString();
                 password=txt_Password.getText().toString();
                         if(!usuario.isEmpty() && !password.isEmpty()){
-                validarUsuario( "http://192.168.0.5/coti/controller/login.php");
+                validarUsuario( "login.php");
                         }
                         else
                         {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private  void validarUsuario (String URL ){
-        StringRequest StringRequest= new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        StringRequest StringRequest= new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES + URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()){
@@ -98,8 +98,9 @@ public class MainActivity extends AppCompatActivity {
     txt_Password.setText(preferences.getString("password","Password"));
         
     }
+
     public void registro_usuario (View view ){
-        Intent datos = new Intent(this, Registro_Usuario_Activity.class);
+        Intent datos = new Intent(this, Registro_Usuario.class);
         startActivity(datos);
     }
 

@@ -3,6 +3,9 @@
     package="com.example.cotapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -12,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Datos_Usuario"></activity>
+        <activity android:name=".Registro_Usuario"></activity>
+        <activity android:name=".Datos_Usuario" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Home_activity" />
         <activity android:name=".PresentacionActivity">
