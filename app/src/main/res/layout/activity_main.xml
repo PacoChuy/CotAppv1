@@ -6,7 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg10"
+    android:scaleType="center"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#d8000000"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/txt_Usuario"
@@ -15,19 +25,23 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="210dp"
         android:layout_marginEnd="32dp"
-        android:background="#11000000"
+        android:background="@drawable/input"
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:hint="Correo"
-
         android:inputType="textEmailAddress"
-        android:textColor="#00385c"
+        android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textCursorDrawable="@null"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp" />
 
     <EditText
         android:id="@+id/txt_password"
@@ -36,18 +50,23 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:background="#11000000"
+        android:background="@drawable/input"
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#00385c"
+        android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_Usuario"
+        android:textCursorDrawable="@null"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"/>
 
     <Button
         android:id="@+id/btn_Login"
@@ -74,7 +93,7 @@
         android:background="@drawable/button_rounden_dorder"
         android:onClick="registro_usuario"
         android:text="Registrar"
-        android:textColor="#00385c"
+        android:textColor="#E8E8E8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_Login" />

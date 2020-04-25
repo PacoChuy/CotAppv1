@@ -5,25 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg10"
+    android:scaleType="center"
     tools:context=".Registro_Usuario" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#d8000000"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/txt_Nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#00385c"
+        android:background="@drawable/input"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
-        android:textColor="#00385c"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
         android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <EditText
         android:id="@+id/txt_Apellido"
@@ -32,17 +48,21 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#00385c"
+        android:background="@drawable/input"
         android:ems="10"
         android:hint="Apellido"
         android:inputType="textPersonName"
-        android:textColor="#00385c"
+        android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         android:textCursorDrawable="@null"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_Nombre"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
     <EditText
         android:id="@+id/txt_password"
@@ -51,16 +71,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#00385c"
+        android:background="@drawable/input"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#00385c"
+        android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textCursorDrawable="@null"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Correo" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_Correo"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
     <EditText
         android:id="@+id/txt_Correo"
@@ -69,16 +93,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#00385c"
+        android:background="@drawable/input"
         android:ems="10"
         android:hint="Correo Electronico"
         android:inputType="textEmailAddress"
-        android:textColor="#00385c"
+        android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
         android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Apellido" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_Apellido"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
     <EditText
         android:id="@+id/txt_con_pass"
@@ -87,16 +115,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#00385c"
+        android:background="@drawable/input"
         android:ems="10"
         android:hint="Confirmación de password"
         android:inputType="textPassword"
-        android:textColor="#00385c"
+        android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
         android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_password" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_password"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
     <Button
         android:id="@+id/btn_registar"
@@ -122,9 +154,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/input"
+        android:textColor="#E8E8E8"
+        android:textColorHint="#52658f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_con_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_con_pass"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+   />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

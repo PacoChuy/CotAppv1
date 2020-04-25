@@ -74,8 +74,8 @@ public class Registro_Usuario extends AppCompatActivity {
 
     public void cargarRoles(){
         RequestQueue queue = Volley.newRequestQueue(this);
-    String url ="http://192.168.0.5/coti/controller/Fill_Spinner_Rol.php?funcion=obtenerRol";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+    String url ="Fill_Spinner_Rol.php?funcion=obtenerRol";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, conexion.URL_WEB_SERVICES+url, new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
             if (response.length()>0){
