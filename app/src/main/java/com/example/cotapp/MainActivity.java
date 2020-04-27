@@ -20,6 +20,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,8 +46,11 @@ public class MainActivity extends AppCompatActivity {
                 usuario=txt_Usuario.getText().toString();
                 password=txt_Password.getText().toString();
                         if(!usuario.isEmpty() && !password.isEmpty()){
-                validarUsuario( "login.php");
+               // validarUsuario( "login.php?u="+txt_Usuario.getText().toString()+"&p="+txt_Password.getText().toString());
+                           // validarUsuario( "login.php?f=u=123@gmail.com&p=15");
+                            validarUsuario( "login.php");
                         }
+
                         else
                         {
                             Toast.makeText(MainActivity.this,"No se permiten campos vacios",Toast.LENGTH_SHORT).show();
@@ -56,11 +63,32 @@ public class MainActivity extends AppCompatActivity {
         StringRequest StringRequest= new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES + URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 if (!response.isEmpty()){
+
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    User usuario = new User();
+                    JSONObject jsonObject=null;
+                    jsonObject =jsonArray.getJSONObject(0);
+                    usuario.setUsuario(jsonObject.optString("usuario"));
+                    usuario.setNombre(jsonObject.optString("nombre"));
+                    usuario.setApellido(jsonObject.optString("apellido"));
+                    usuario.setTelefono(jsonObject.optString("telefono"));
+                    usuario.setCorreo(jsonObject.optString("correo"));
+                    usuario.setRol(jsonObject.optString("rol"));
+                    usuario.setCiudad(jsonObject.optString("ciudad"));
+                    usuario.setEmpresa(jsonObject.optString("empresa"));
                     guardarPreferencias();
-                   Intent intent=  new Intent (getApplicationContext(), Home_activity.class);
-                   startActivity(intent);
-                   finish();
+
+                    Intent intent=  new Intent (getApplicationContext(), Home_activity.class);
+                    intent.putExtra(Home_activity.nombres,usuario.getNombre());
+                    startActivity(intent);
+                    finish();
+                }catch (JSONException jsnex1){
+
+                    Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                }
                 }else{
                    Toast.makeText( MainActivity.this, "usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
                 }

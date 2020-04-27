@@ -130,16 +130,15 @@ public class Registro_Usuario extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Este usuario ya esta registrado", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     nombre.setText("");
                     apellido.setText("");
                     correo.setText("");
                     password.setText("");
                     confirm_password.setText("");
                     Toast.makeText(getApplicationContext(), "Usuario Registrado", Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    Toast.makeText( Registro_Usuario.this, "Este correo ya esta registrado",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -156,6 +155,7 @@ public class Registro_Usuario extends AppCompatActivity {
                 parametros.put("Apellido_usuario",apellido.getText().toString());
                 parametros.put("Correo_usuario",correo.getText().toString());
                 parametros.put("Password_usuario",password.getText().toString());
+                parametros.put("$reg_Rol_u",spinnerRol.getSelectedItem().toString());
                 return parametros;
             }
         };
