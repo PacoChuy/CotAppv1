@@ -13,9 +13,7 @@
         android:orientation="vertical"
         android:background="#d8000000"
         android:gravity="center"
-        android:layout_height="match_parent">
-
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 
 
     <EditText
@@ -30,18 +28,18 @@
         android:ems="10"
         android:hint="Correo"
         android:inputType="textEmailAddress"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
         android:textColor="#E8E8E8"
         android:textColorHint="#52658f"
+        android:textCursorDrawable="@null"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textCursorDrawable="@null"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txt_password"

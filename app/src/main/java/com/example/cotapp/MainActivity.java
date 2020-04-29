@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,18 +41,14 @@ public class MainActivity extends AppCompatActivity {
         txt_Password=findViewById(R.id.txt_password);
         btnLogin= findViewById(R.id.btn_Login);
         recuperarPreferencias();
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void  onClick(View view) {
                 usuario=txt_Usuario.getText().toString();
                 password=txt_Password.getText().toString();
                         if(!usuario.isEmpty() && !password.isEmpty()){
-               // validarUsuario( "login.php?u="+txt_Usuario.getText().toString()+"&p="+txt_Password.getText().toString());
-                           // validarUsuario( "login.php?f=u=123@gmail.com&p=15");
-                            validarUsuario( "login.php");
+                validarUsuario( "login.php?f=datos&u="+txt_Usuario.getText().toString()+"&p="+txt_Password.getText().toString());
                         }
-
                         else
                         {
                             Toast.makeText(MainActivity.this,"No se permiten campos vacios",Toast.LENGTH_SHORT).show();
@@ -59,59 +57,56 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private  void validarUsuario (String URL ){
-        StringRequest StringRequest= new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES + URL, new Response.Listener<String>() {
+    public void validarUsuario(String URL){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, conexion.URL_WEB_SERVICES+URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                if (response.length()>0){
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        obtenerdatos(jsonArray);
+                    }catch (JSONException jsnex1){
 
-                if (!response.isEmpty()){
-
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    User usuario = new User();
-                    JSONObject jsonObject=null;
-                    jsonObject =jsonArray.getJSONObject(0);
-                    usuario.setUsuario(jsonObject.optString("usuario"));
-                    usuario.setNombre(jsonObject.optString("nombre"));
-                    usuario.setApellido(jsonObject.optString("apellido"));
-                    usuario.setTelefono(jsonObject.optString("telefono"));
-                    usuario.setCorreo(jsonObject.optString("correo"));
-                    usuario.setRol(jsonObject.optString("rol"));
-                    usuario.setCiudad(jsonObject.optString("ciudad"));
-                    usuario.setEmpresa(jsonObject.optString("empresa"));
-                    guardarPreferencias();
-
-                    Intent intent=  new Intent (getApplicationContext(), Home_activity.class);
-                    intent.putExtra(Home_activity.nombres,usuario.getNombre());
-                    startActivity(intent);
-                    finish();
-                }catch (JSONException jsnex1){
-
-                    Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                    }
                 }
-                }else{
-                   Toast.makeText( MainActivity.this, "usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText( MainActivity.this, "usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
                 }
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map <String,String> parametros =new HashMap<String, String>();
-                parametros.put("usuario",usuario);
-                parametros.put("password",password);
-                return  parametros;
-
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(StringRequest);
+        });
+        queue.add(stringRequest);
     }
+    public void  obtenerdatos(JSONArray jsonArray){
+        User usuario = new User();
+        for(int i=0; i<jsonArray.length(); i++){
+            try{
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                usuario.setUsuario(jsonObject.getString("usuario"));
+                usuario.setNombre(jsonObject.getString("nombre"));
+                usuario.setApellido(jsonObject.getString("apellido"));
+                usuario.setTelefono(jsonObject.getString("telefono"));
+                usuario.setCorreo(jsonObject.getString("correo"));
+                usuario.setRol(jsonObject.getString("rol"));
+                usuario.setCiudad(jsonObject.getString("ciudad"));
+                usuario.setEmpresa(jsonObject.getString("empresa"));
+            }catch (JSONException jsnEx2){
+                Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();
+            }
+        }
+        guardarPreferencias();
+        Intent intent=  new Intent (getApplicationContext(), Home_activity.class);
+        intent.putExtra(Home_activity.nombre,usuario.getNombre());
+        startActivity(intent);
+        finish();
+    }
+
     private  void  guardarPreferencias(){
         SharedPreferences preferences=getSharedPreferences("preferenciasLogin",Context.MODE_PRIVATE );
         SharedPreferences.Editor editor = preferences.edit();
