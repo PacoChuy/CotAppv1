@@ -100,11 +100,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();
             }
         }
-        guardarPreferencias();
-        Intent intent=  new Intent (getApplicationContext(), Home_activity.class);
-        intent.putExtra(Home_activity.nombre,usuario.getNombre());
-        startActivity(intent);
-        finish();
+      if(usuario.getRol().equals("3")) {
+            guardarPreferencias();
+            Intent intent = new Intent(getApplicationContext(), Home_activity.class);
+            intent.putExtra(Home_activity.nombre, usuario.getNombre());
+            startActivity(intent);
+            finish();
+       }
+      else
+      {
+          guardarPreferencias();
+          Intent intent = new Intent(getApplicationContext(), Home_Supplier.class);
+          intent.putExtra(Home_Supplier.nombre, usuario.getNombre());
+          startActivity(intent);
+          finish();
+
+       }
     }
 
     private  void  guardarPreferencias(){
@@ -119,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences = getSharedPreferences("preferenciasLogin",Context.MODE_PRIVATE);
     txt_Usuario.setText(preferences.getString("usuario", "Correo"));
     txt_Password.setText(preferences.getString("password","Password"));
-        
+
     }
 
     public void registro_usuario (View view ){

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg10"
     android:scaleType="center"
-    tools:context=".Home_activity">
+    tools:context=".Home_Supplier">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -87,5 +88,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
