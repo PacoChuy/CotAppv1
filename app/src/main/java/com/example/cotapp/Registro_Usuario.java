@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,11 +11,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -48,7 +45,7 @@ public class Registro_Usuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro__usuario);
         nombre=(EditText)findViewById(R.id.txt_Nombre);
-        apellido=(EditText)findViewById(R.id.txt_Apellido);
+        apellido=(EditText)findViewById(R.id.txt_Fecha);
         correo=(EditText)findViewById(R.id.txt_Correo);
         password=(EditText)findViewById(R.id.txt_password);
         confirm_password=(EditText)findViewById(R.id.txt_con_pass);
