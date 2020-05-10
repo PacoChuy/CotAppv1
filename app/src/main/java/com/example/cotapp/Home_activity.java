@@ -2,7 +2,9 @@ package com.example.cotapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Home_activity extends AppCompatActivity {
-    public static final String nombre="nombre";
 
     TextView cajaBienvenido;
     Button btnSolicitud;
@@ -20,8 +21,7 @@ public class Home_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_activity);
         cajaBienvenido=(TextView)findViewById(R.id.txt_bienvenido);
-        String nombre =getIntent().getStringExtra("nombre");
-        cajaBienvenido.setText("Hola "+ nombre +" !");
+        recuperarPreferencias();
         btnSolicitud = (Button)findViewById(R.id.btn_Nva_Solicitud);
 
         btnSolicitud.setOnClickListener(new View.OnClickListener() {
@@ -41,5 +41,9 @@ public class Home_activity extends AppCompatActivity {
         startActivity(datos);
     }
 
+    private void  recuperarPreferencias(){
+        SharedPreferences preferences = getSharedPreferences("preferenciasusuarios", Context.MODE_PRIVATE);
+        cajaBienvenido.setText(preferences.getString("nombre","nombre"));
+    }
 
 }

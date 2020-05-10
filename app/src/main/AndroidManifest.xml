@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Nueva_Solicitud"></activity>
+        <activity android:name=".Nuevo_requerimiento"></activity>
+        <activity android:name=".Nueva_Solicitud" />
         <activity android:name=".Home_Supplier" />
         <activity android:name=".Registro_Usuario" />
         <activity android:name=".Datos_Usuario" />

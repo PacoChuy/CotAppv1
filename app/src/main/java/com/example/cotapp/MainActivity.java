@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txt_Usuario, txt_Password;
     Button btnLogin;
     String usuario,password;
+    Spinner spinnerCategoria;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
           editor.putBoolean("sesion",true);
           editor.commit();
             Intent intent = new Intent(getApplicationContext(), Home_activity.class);
-            intent.putExtra(Home_activity.nombre, usuario.getNombre());
             startActivity(intent);
             finish();
        }
