@@ -49,8 +49,9 @@ public class Registro_Usuario extends AppCompatActivity {
         correo=(EditText)findViewById(R.id.txt_Correo);
         password=(EditText)findViewById(R.id.txt_password);
         confirm_password=(EditText)findViewById(R.id.txt_con_pass);
-        btnAgregar=(Button) findViewById(R.id.btn_registar);
+        btnAgregar=(Button) findViewById(R.id.btn_crear);
         spinnerRol=(Spinner)findViewById(R.id.sp_Rol);
+
         cargarRoles();
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +153,7 @@ public class Registro_Usuario extends AppCompatActivity {
                 parametros.put("Apellido_usuario",apellido.getText().toString());
                 parametros.put("Correo_usuario",correo.getText().toString());
                 parametros.put("Password_usuario",password.getText().toString());
-                parametros.put("$reg_Rol_u",spinnerRol.getSelectedItem().toString());
+                parametros.put("reg_Rol_u",spinnerRol.getSelectedItem().toString());
                 return parametros;
             }
         };

@@ -16,9 +16,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
-
-    </LinearLayout>
+        tools:layout_editor_absoluteX="0dp"/>
 
     <EditText
         android:id="@+id/txt_Nombre_Solicitud"
@@ -52,7 +50,7 @@
         android:background="@drawable/input"
         android:ems="10"
         android:hint="Selecciona fecha Final"
-        android:inputType="date"
+        android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
@@ -66,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_Nombre_Solicitud" />
 
     <Button
-        android:id="@+id/btn_registar"
+        android:id="@+id/btn_crear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
