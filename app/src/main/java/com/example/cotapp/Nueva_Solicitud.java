@@ -45,6 +45,7 @@ public class Nueva_Solicitud extends AppCompatActivity {
  DatePickerDialog.OnDateSetListener setListener;
  Button btn_crear;
  EditText txt_nombre;
+    EditText txt_coti;
     String usuarios;
     Spinner spinnerCat;
     List<String> listaCategoria;// guarda el nombre de la categoria
@@ -62,6 +63,7 @@ public class Nueva_Solicitud extends AppCompatActivity {
         btn_crear= findViewById(R.id.btn_crear);
         txt_nombre=findViewById(R.id.txt_Nombre_Solicitud);
         spinnerCat=(Spinner)findViewById(R.id.sp_Categoria);
+        txt_coti=findViewById(R.id.txt_Numero_Coti);
         recuperarPreferencias();
         cargarCategoria();
 
@@ -188,14 +190,14 @@ public class Nueva_Solicitud extends AppCompatActivity {
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                User usuario = new User();
-                String nombre = usuario.getUsuario();
 
                 Map<String,String>parametros=new HashMap<>();
                 parametros.put("Nombre_Solicitud",txt_nombre.getText().toString());
                 parametros.put("Fecha_Fin",txt_Fecha.getText().toString());
                parametros.put("usuario",usuarios);
                 parametros.put("categoria",spinnerCat.getSelectedItem().toString());
+                parametros.put("num_cotizacion",txt_coti.getText().toString());
+
                 return parametros;
             }
         };
