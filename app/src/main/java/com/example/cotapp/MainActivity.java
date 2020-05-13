@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 if (response.length()>0){
                     try {
+                        guardarPreferencias();
                         JSONArray jsonArray = new JSONArray(response);
                         obtenerdatos(jsonArray);
                     }catch (JSONException jsnex1){
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
       if(usuario.getRol().equals("3")) {
-            guardarPreferencias();
+
           SharedPreferences preferences=getSharedPreferences("preferenciasusuarios",Context.MODE_PRIVATE );
           SharedPreferences.Editor editor = preferences.edit();
           editor.putString("usuario",usuario.getUsuario());

@@ -26,7 +26,7 @@ public class PresentacionActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences preferences=getSharedPreferences("preferenciasLogion", Context.MODE_PRIVATE);
-                boolean sesion=preferences.getBoolean("sesion",false);
+                boolean sesion=preferences.getBoolean("sesion",true);
                 if (sesion){
                     Intent intent = new Intent(getApplicationContext(), Home_activity.class);
                     startActivity(intent);

@@ -48,11 +48,8 @@ public class Nueva_Solicitud extends AppCompatActivity {
     EditText txt_coti;
     String usuarios;
     Spinner spinnerCat;
+    Spinner spinnerCre;
     List<String> listaCategoria;// guarda el nombre de la categoria
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +60,11 @@ public class Nueva_Solicitud extends AppCompatActivity {
         btn_crear= findViewById(R.id.btn_crear);
         txt_nombre=findViewById(R.id.txt_Nombre_Solicitud);
         spinnerCat=(Spinner)findViewById(R.id.sp_Categoria);
+        spinnerCre=(Spinner)findViewById(R.id.sp_Credito);
         txt_coti=findViewById(R.id.txt_Numero_Coti);
         recuperarPreferencias();
         cargarCategoria();
+        cargarCredito();
 
 
 
@@ -163,6 +162,57 @@ public class Nueva_Solicitud extends AppCompatActivity {
     }
 
 
+    public void cargarCredito(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="Fill_Spinner_Credito.php?funcion=C";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, conexion.URL_WEB_SERVICES+url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.length()>0){
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        obtenerCredito(jsonArray);
+
+                    }catch (JSONException jsnex1){
+
+                        Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
+
+            }
+        });
+        queue.add(stringRequest);
+
+    }
+
+    public void  obtenerCredito(JSONArray jsonArray){
+
+        listaCategoria = new ArrayList<String>();
+        for(int i=0; i<jsonArray.length(); i++){
+            try{
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                String Rol =jsonObject.getString("Nombre");
+
+                listaCategoria.add(Rol);
+            }catch (JSONException jsnEx2){
+                Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();
+
+            }
+
+        }
+        ArrayAdapter<String> adapterRoles = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,listaCategoria);
+        spinnerCre.setAdapter(adapterRoles);
+
+    }
 
     private void  ejecutarServicio(String URL)
     {
@@ -176,7 +226,7 @@ public class Nueva_Solicitud extends AppCompatActivity {
                     txt_Fecha.setText("");
                     txt_nombre.setText("");
 
-                    Intent intent = new Intent(getApplicationContext(), Home_activity.class);
+                    Intent intent = new Intent(getApplicationContext(), Nuevo_requerimiento.class);
                     startActivity(intent);
                     finish();
                 }
@@ -194,7 +244,8 @@ public class Nueva_Solicitud extends AppCompatActivity {
                 Map<String,String>parametros=new HashMap<>();
                 parametros.put("Nombre_Solicitud",txt_nombre.getText().toString());
                 parametros.put("Fecha_Fin",txt_Fecha.getText().toString());
-               parametros.put("usuario",usuarios);
+                 parametros.put("usuario",usuarios);
+                parametros.put("credito",spinnerCre.getSelectedItem().toString());
                 parametros.put("categoria",spinnerCat.getSelectedItem().toString());
                 parametros.put("num_cotizacion",txt_coti.getText().toString());
 

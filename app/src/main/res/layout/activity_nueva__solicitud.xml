@@ -7,7 +7,6 @@
     android:background="@drawable/bg10"
     android:scaleType="center"
     tools:context=".Nueva_Solicitud">
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -16,14 +15,49 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <Spinner
+        android:id="@+id/sp_Credito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/input"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:textColor="#E8E8E8"
+        android:textColorHint="#52658f"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Numero_Coti" />
+
+    <Spinner
+        android:id="@+id/sp_Categoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/input"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:textColor="#E8E8E8"
+        android:textColorHint="#52658f"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Fecha" />
+
 
     <EditText
         android:id="@+id/txt_Nombre_Solicitud"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/input"
         android:ems="10"
@@ -86,22 +120,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_Nombre_Solicitud" />
 
-    <Spinner
-        android:id="@+id/sp_Categoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/input"
-        android:paddingLeft="20dp"
-        android:paddingRight="10dp"
-        android:textColor="#E8E8E8"
-        android:textColorHint="#52658f"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Fecha" />
+
 
     <Button
         android:id="@+id/btn_crear"
@@ -116,8 +135,20 @@
         android:text="Crear"
         android:textColor="#d6dae2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Numero_Coti" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_Credito" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
