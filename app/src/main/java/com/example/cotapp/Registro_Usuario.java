@@ -33,8 +33,8 @@ import java.util.Map;
 
 public class Registro_Usuario extends AppCompatActivity {
 
-    List<String>listaIdSucursales; //guarda el id de los Roles
-    List<String>listaRoles;// guarda el nombre de la sucursal
+    List<String>listaIdSucursales;
+    List<String>listaRoles;
     EditText nombre,apellido,correo,password,confirm_password;
     Button btnAgregar;
     Spinner spinnerRol;

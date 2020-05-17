@@ -40,6 +40,7 @@ import java.util.Map;
 
 public class Nueva_Solicitud extends AppCompatActivity {
     User usuario = new User();
+
     public static final String nombre="nombre";
  TextView txt_Fecha;
  DatePickerDialog.OnDateSetListener setListener;
@@ -219,18 +220,18 @@ public class Nueva_Solicitud extends AppCompatActivity {
         StringRequest stringRequest=new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES +URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (!response.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Esta Solicitud ya esta registrada", Toast.LENGTH_SHORT).show();
+                if (response.length()>0){
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        obtenerdatos(jsonArray);
+                    }catch (JSONException jsnex1){
+
+                        Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                    }
                 }
                 else{
-                    txt_Fecha.setText("");
-                    txt_nombre.setText("");
-
-                    Intent intent = new Intent(getApplicationContext(), Nuevo_requerimiento.class);
-                    startActivity(intent);
-                    finish();
+                    Toast.makeText(getApplicationContext(), "Esta Solicitud ya esta registrada", Toast.LENGTH_SHORT).show();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -260,5 +261,35 @@ public class Nueva_Solicitud extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("preferenciasusuarios", Context.MODE_PRIVATE);
         usuarios = preferences.getString("usuario", "ID");
     }
+
+
+
+    public void  obtenerdatos(JSONArray jsonArray){
+        Req solicitud = new Req();
+
+        for(int i=0; i<jsonArray.length(); i++){
+            try{
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                solicitud.setSolicitud(jsonObject.getString("solicitud"));
+            }catch (JSONException jsnEx2){
+                Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();
+            }
+        }
+            SharedPreferences preferences=getSharedPreferences("preferenciasolicitud",Context.MODE_PRIVATE );
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("solicitud",solicitud.getSolicitud());
+            editor.commit();
+            Intent intent = new Intent(getApplicationContext(), Nuevo_requerimiento.class);
+            startActivity(intent);
+            finish();
+
+    }
+
+
+
+
+
+
+
 
 }
