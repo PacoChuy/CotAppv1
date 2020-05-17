@@ -3,6 +3,7 @@ package com.example.cotapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,7 @@ public class Nuevo_requerimiento extends AppCompatActivity {
     EditText nombre, descripcion,serie,modelo,marca,cantidad;
     Spinner spinnerUnidad;
     Button btnAgregar;
+    Button btnFinalizar;
     String solicitud;
 
 
@@ -52,6 +54,7 @@ public class Nuevo_requerimiento extends AppCompatActivity {
         marca=(EditText)findViewById(R.id.txt_Marca_Producto);
         cantidad=(EditText)findViewById(R.id.txt_Cantidad_Producto);
         spinnerUnidad=(Spinner)findViewById(R.id.sp_uni);
+        btnFinalizar=(Button)findViewById(R.id.btn_Finalizar);
 
         cargarUnidad();
         recuperarPreferencias();
@@ -68,15 +71,20 @@ public class Nuevo_requerimiento extends AppCompatActivity {
                     ejecutarServicio("Insert_request_detail.php");
                 }
 
-
-
             }
         });
 
 
+        btnFinalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ejecutarcierre("close_request.php");
+
+            }
+        });
+
     }
-
-
     public void cargarUnidad(){
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="Fill_Spinner_Unidad.php?funcion=U";
@@ -174,6 +182,39 @@ public class Nuevo_requerimiento extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+//cierre de solucitud
+    private void  ejecutarcierre(String URL)
+    {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES +URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (!response.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "No se finalizop la solicitud", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), Home_activity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String>parametros=new HashMap<>();
+                parametros.put("solicitud",solicitud);
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
 
     private void  recuperarPreferencias(){
         SharedPreferences preferences = getSharedPreferences("preferenciasolicitud", Context.MODE_PRIVATE);
