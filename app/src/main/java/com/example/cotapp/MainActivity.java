@@ -65,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (response.length()>0){
+
                     try {
-                        guardarPreferencias();
                         JSONArray jsonArray = new JSONArray(response);
+
                         obtenerdatos(jsonArray);
                     }catch (JSONException jsnex1){
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
       if(usuario.getRol().equals("3")) {
-
+          guardarPreferencias();
           SharedPreferences preferences=getSharedPreferences("preferenciasusuarios",Context.MODE_PRIVATE );
           SharedPreferences.Editor editor = preferences.edit();
           editor.putString("usuario",usuario.getUsuario());
@@ -115,13 +116,12 @@ public class MainActivity extends AppCompatActivity {
           editor.putString("rol",usuario.getRol());
           editor.putString("ciudad",usuario.getCiudad());
           editor.putString("empresa",usuario.getEmpresa());
-          editor.putBoolean("sesion",true);
           editor.commit();
             Intent intent = new Intent(getApplicationContext(), Home_activity.class);
             startActivity(intent);
             finish();
        }
-      else
+      else if (usuario.getRol().equals("2"))
       {
           guardarPreferencias();
           Intent intent = new Intent(getApplicationContext(), Home_Supplier.class);
@@ -130,6 +130,10 @@ public class MainActivity extends AppCompatActivity {
           finish();
 
        }
+      else if (usuario.getRol().equals("0"))
+      {
+          Toast.makeText( MainActivity.this, "usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
+      }
     }
 
     private  void  guardarPreferencias(){
@@ -143,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void  recuperarPreferencias(){
     SharedPreferences preferences = getSharedPreferences("preferenciasLogin",Context.MODE_PRIVATE);
-    txt_Usuario.setText(preferences.getString("usuario", "Correo"));
-    txt_Password.setText(preferences.getString("password","Password"));
+    txt_Usuario.setText(preferences.getString("usuario", ""));
+    txt_Password.setText(preferences.getString("password",""));
 
     }
 
