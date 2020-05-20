@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
       {
           guardarPreferencias();
           Intent intent = new Intent(getApplicationContext(), Home_Supplier.class);
-          intent.putExtra(Home_Supplier.nombre, usuario.getNombre());
           startActivity(intent);
           finish();
 

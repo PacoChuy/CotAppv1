@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Home_activity"></activity>
+        <activity android:name=".seleccion_categoria"></activity>
+        <activity android:name=".Home_activity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Nueva_Solicitud" />
         <activity android:name=".Home_Supplier" />
@@ -22,6 +23,7 @@
         <activity android:name=".PresentacionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

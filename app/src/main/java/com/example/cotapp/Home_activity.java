@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Home_activity extends AppCompatActivity {
 
@@ -20,9 +19,9 @@ public class Home_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_activity);
-        cajaBienvenido=(TextView)findViewById(R.id.txt_bienvenido);
+        cajaBienvenido=(TextView)findViewById(R.id.txt_bienvenida);
         recuperarPreferencias();
-        btnSolicitud = (Button)findViewById(R.id.btn_Nva_Solicitud);
+        btnSolicitud = (Button)findViewById(R.id.btn_Buscar_Solicitud);
 
         btnSolicitud.setOnClickListener(new View.OnClickListener() {
             @Override

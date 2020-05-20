@@ -14,8 +14,10 @@
         android:background="#d8000000"
         android:gravity="center"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-98dp"></LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_Datos"
@@ -31,17 +33,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Nva_Solicitud" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Buscar_Solicitud" />
 
     <Button
-        android:id="@+id/btn_Nva_Solicitud"
+        android:id="@+id/btn_Buscar_Solicitud"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_rounded"
-        android:text="Nueva Solicitud"
+        android:text="Buscar Solicitud "
         android:textColor="#d6dae2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -58,7 +60,7 @@
         android:text="Mis     Solicitudes"
         android:textColor="#E8E8E8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Nva_Solicitud" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Buscar_Solicitud" />
 
     <Button
         android:id="@+id/btn_cotizacion"
@@ -70,16 +72,28 @@
         android:text="Mis Cotiizaciones"
         android:textColor="#E8E8E8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Nva_Solicitud" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Buscar_Solicitud" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/txt_bienvenido"
+        android:id="@+id/txt_bienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/input"
+        android:layout_marginStart="255dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_rounden_dorder"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
@@ -87,7 +101,8 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
