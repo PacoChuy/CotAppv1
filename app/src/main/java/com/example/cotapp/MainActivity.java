@@ -124,6 +124,17 @@ public class MainActivity extends AppCompatActivity {
       else if (usuario.getRol().equals("2"))
       {
           guardarPreferencias();
+          SharedPreferences preferences=getSharedPreferences("preferenciasusuarios",Context.MODE_PRIVATE );
+          SharedPreferences.Editor editor = preferences.edit();
+          editor.putString("usuario",usuario.getUsuario());
+          editor.putString("nombre",usuario.getNombre());
+          editor.putString("apellido",usuario.getApellido());
+          editor.putString("telefono",usuario.getTelefono());
+          editor.putString("correo",usuario.getCorreo());
+          editor.putString("rol",usuario.getRol());
+          editor.putString("ciudad",usuario.getCiudad());
+          editor.putString("empresa",usuario.getEmpresa());
+          editor.commit();
           Intent intent = new Intent(getApplicationContext(), Home_Supplier.class);
           startActivity(intent);
           finish();

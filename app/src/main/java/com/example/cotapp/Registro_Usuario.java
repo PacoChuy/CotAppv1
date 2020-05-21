@@ -35,9 +35,12 @@ public class Registro_Usuario extends AppCompatActivity {
 
     List<String>listaIdSucursales;
     List<String>listaRoles;
+    List<String>listaCiudades;
     EditText nombre,apellido,correo,password,confirm_password;
     Button btnAgregar;
     Spinner spinnerRol;
+    Spinner spinnerCd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,10 @@ public class Registro_Usuario extends AppCompatActivity {
         confirm_password=(EditText)findViewById(R.id.txt_con_pass);
         btnAgregar=(Button) findViewById(R.id.btn_crear);
         spinnerRol=(Spinner)findViewById(R.id.sp_Rol);
+        spinnerCd=(Spinner)findViewById(R.id.sp_ciudad);
 
         cargarRoles();
+        cargarCiudad();
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +127,56 @@ public class Registro_Usuario extends AppCompatActivity {
 
     }
 
+    public void cargarCiudad(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="Fill_Spinner_Ciudad.php?funcion=cd";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, conexion.URL_WEB_SERVICES+url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.length()>0){
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        obtenerCiudad(jsonArray);
+
+                    }catch (JSONException jsnex1){
+
+                        Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
+
+            }
+        });
+        queue.add(stringRequest);
+
+    }
+
+    public void  obtenerCiudad(JSONArray jsonArray){
+        listaCiudades = new ArrayList<String>();
+        for(int i=0; i<jsonArray.length(); i++){
+            try{
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String Ciudad =jsonObject.getString("Nombre");
+
+                listaCiudades.add(Ciudad);
+            }catch (JSONException jsnEx2){
+                Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();
+
+            }
+
+        }
+        ArrayAdapter<String>adapterRoles = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,listaCiudades);
+        spinnerCd.setAdapter(adapterRoles);
+
+    }
+
     private void  ejecutarServicio(String URL)
     {
         StringRequest stringRequest=new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES +URL, new Response.Listener<String>() {
@@ -153,7 +208,8 @@ public class Registro_Usuario extends AppCompatActivity {
                 parametros.put("Apellido_usuario",apellido.getText().toString());
                 parametros.put("Correo_usuario",correo.getText().toString());
                 parametros.put("Password_usuario",password.getText().toString());
-                parametros.put("reg_Rol_u",spinnerRol.getSelectedItem().toString());
+                parametros.put("Rol",spinnerRol.getSelectedItem().toString());
+                parametros.put("Ciudad",spinnerCd.getSelectedItem().toString());
                 return parametros;
             }
         };

@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Home_Supplier extends AppCompatActivity {
-    public static final String nombre="nombre";
+
 
     TextView cajaBienvenido;
     Button btnSolicitud;

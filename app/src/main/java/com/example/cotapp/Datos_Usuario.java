@@ -21,8 +21,10 @@ public class Datos_Usuario extends AppCompatActivity {
         btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences preferences = getSharedPreferences("preferencesLogin", Context.MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+                SharedPreferences usuario = getSharedPreferences("preferenciasusuarios", Context.MODE_PRIVATE);
                 preferences.edit().clear().commit();
+                usuario.edit().clear().commit();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
