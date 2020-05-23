@@ -25,12 +25,28 @@ public class PresentacionActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SharedPreferences preferences=getSharedPreferences("preferenciasLogion", Context.MODE_PRIVATE);
+                SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
                 boolean sesion=preferences.getBoolean("sesion",false);
                 if (sesion){
-                    Intent intent = new Intent(getApplicationContext(), Home_activity.class);
-                    startActivity(intent);
-                    finish();
+                    SharedPreferences preferencias=getSharedPreferences("preferenciasusuarios", Context.MODE_PRIVATE);
+                    String usuario=preferencias.getString("rol","0");
+                    if (usuario.equals("3")){
+                        Intent intent = new Intent(getApplicationContext(), Home_activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if(usuario.equals("2"))
+                    {
+                        Intent intent = new Intent(getApplicationContext(), Home_Supplier.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }else
                 {
                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);

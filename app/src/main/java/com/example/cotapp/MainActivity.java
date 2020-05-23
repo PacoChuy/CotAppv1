@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
           editor.putString("rol",usuario.getRol());
           editor.putString("ciudad",usuario.getCiudad());
           editor.putString("empresa",usuario.getEmpresa());
+          editor.putBoolean("usuario",true);
           editor.commit();
           Intent intent = new Intent(getApplicationContext(), Home_Supplier.class);
           startActivity(intent);
