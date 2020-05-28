@@ -57,7 +57,7 @@
 
 
     <Button
-        android:id="@+id/btn_Agregar"
+        android:id="@+id/btn_Buscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -72,5 +72,18 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sp_ciudad" />
+
+    <ListView
+        android:id="@+id/lsv_Lista"
+        android:layout_width="370dp"
+        android:layout_height="294dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_rounden_dorder"
+        android:textColor="#d6dae2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Buscar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

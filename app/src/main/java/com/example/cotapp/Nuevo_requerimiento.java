@@ -46,7 +46,7 @@ public class Nuevo_requerimiento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_requerimiento);
         spinnerUn=(Spinner)findViewById(R.id.sp_uni);
-        btnAgregar=(Button) findViewById(R.id.btn_Agregar);
+        btnAgregar=(Button) findViewById(R.id.btn_Buscar);
         nombre=(EditText)findViewById(R.id.txt_Nombre_Producto);
         descripcion=(EditText)findViewById(R.id.txt_Descripcion_Producto);
         serie=(EditText)findViewById(R.id.txt_Numero_Serie);

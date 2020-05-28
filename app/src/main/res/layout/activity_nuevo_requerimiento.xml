@@ -174,7 +174,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_Cantidad_Producto" />
 
     <Button
-        android:id="@+id/btn_Agregar"
+        android:id="@+id/btn_Buscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -204,6 +204,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Agregar" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Buscar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
