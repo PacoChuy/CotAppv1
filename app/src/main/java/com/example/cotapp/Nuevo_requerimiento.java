@@ -189,7 +189,7 @@ public class Nuevo_requerimiento extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "No se finalizop la solicitud", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No se finalizo la solicitud", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Intent intent = new Intent(getApplicationContext(), Home_activity.class);

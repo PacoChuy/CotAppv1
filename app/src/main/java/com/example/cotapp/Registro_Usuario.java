@@ -1,3 +1,4 @@
+
 package com.example.cotapp;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -77,32 +78,32 @@ public class Registro_Usuario extends AppCompatActivity {
 
     public void cargarRoles(){
         RequestQueue queue = Volley.newRequestQueue(this);
-    String url ="Fill_Spinner_Rol.php?funcion=obtenerRol";
+        String url ="Fill_Spinner_Rol.php?funcion=obtenerRol";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, conexion.URL_WEB_SERVICES+url, new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response) {
-            if (response.length()>0){
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    obtenerRoles(jsonArray);
+            @Override
+            public void onResponse(String response) {
+                if (response.length()>0){
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        obtenerRoles(jsonArray);
 
-                }catch (JSONException jsnex1){
+                    }catch (JSONException jsnex1){
 
-                    Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),jsnex1.toString(),Toast.LENGTH_LONG).show();
+                    }
+
                 }
 
+
             }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
 
-
-        }
-    }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
-
-        }
-    });
-    queue.add(stringRequest);
+            }
+        });
+        queue.add(stringRequest);
 
     }
 

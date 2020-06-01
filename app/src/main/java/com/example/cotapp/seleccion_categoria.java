@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,12 +31,14 @@ public class seleccion_categoria extends AppCompatActivity {
     Spinner spinnerCd;
     ListView lsvDetalle;
     Button btnBuscar;
+    TextView tv1;
 
     List<String> listaCategoria;
     List<String>listaCiudades;
     List<String>listaSolicitud;
-
-
+    List<String>listaDescripcion;
+    private  String soledad;
+    private  String edades []= {"10","20"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_seleccion_categoria);
@@ -42,6 +46,7 @@ public class seleccion_categoria extends AppCompatActivity {
         spinnerCd=(Spinner)findViewById(R.id.sp_ciudad);
         lsvDetalle=(ListView)findViewById(R.id.lsv_Lista);
         btnBuscar=(Button) findViewById(R.id.btn_Buscar);
+        tv1=(TextView)findViewById(R.id.tv1);
 
         cargarCategoria();
         cargarCiudad();
@@ -193,17 +198,33 @@ public class seleccion_categoria extends AppCompatActivity {
     }
     public void  obtenerLista(JSONArray jsonArray){
         listaSolicitud = new ArrayList<String>();
+        listaDescripcion = new ArrayList<String>();
+        // map<int, string>  puedes tener  ID con un string
         for(int i=0; i<jsonArray.length(); i++){
-            try{
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String solicitud =jsonObject.getString("descripcion" );
+        try{
+        JSONObject jsonObject = jsonArray.getJSONObject(i);
+        String descripcion =jsonObject.getString("descripcion" );
+        String solicitud  =jsonObject.getString("solicitud" );
 
-                listaSolicitud.add(solicitud);
-            }catch (JSONException jsnEx2){
-                Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();
-            }
+        listaDescripcion.add(descripcion);
+        listaSolicitud.add(solicitud);
+
+        }catch (JSONException jsnEx2){
+        Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();
         }
-        ArrayAdapter<String>adapterSolicitudes = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,listaSolicitud);
-        lsvDetalle.setAdapter(adapterSolicitudes);
-    }
-}
+        }
+        ArrayAdapter<String>adapterDescripcion = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,listaDescripcion);
+        lsvDetalle.setAdapter(adapterDescripcion);
+
+
+
+        lsvDetalle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+@Override
+public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        tv1.setText("La "+lsvDetalle.getItemAtPosition(position)+"hola"+ listaSolicitud.get(position) +"mundo");
+
+
+        }
+        });
+        }
+        }
