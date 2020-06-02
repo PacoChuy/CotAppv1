@@ -118,14 +118,11 @@ public class Nuevo_requerimiento extends AppCompatActivity {
 
     // Carga de unidades en el Spinner
     public void  obtenerUnidad(JSONArray jsonArray){
-
         listaUnidad = new ArrayList<String>();
         for(int i=0; i<jsonArray.length(); i++){
             try{
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-
                 String Rol =jsonObject.getString("Nombre");
-
                 listaUnidad.add(Rol);
             }catch (JSONException jsnEx2){
                 Toast.makeText(getApplicationContext(),jsnEx2.toString(),Toast.LENGTH_LONG).show();

@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,7 +25,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class seleccion_categoria extends AppCompatActivity {
     Spinner spinnerCat;
@@ -55,7 +58,7 @@ public class seleccion_categoria extends AppCompatActivity {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarLista();
+                cargarLista("Find_Cab_Solicitud.php");
             }
         });
 
@@ -166,10 +169,10 @@ public class seleccion_categoria extends AppCompatActivity {
 
     //-------------------------CARGA  lISTA DE SOLICITUD -------------------------------------------------------------------//
 // ---------------------------------------------------------------------------------------------------------------------//
-    public void cargarLista(){
+    public void cargarLista(String URL){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="Fill_List_Detail.php?f=datos&ci="+spinnerCat.getSelectedItem().toString()+"&ca="+spinnerCd.getSelectedItem().toString();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, conexion.URL_WEB_SERVICES+url, new Response.Listener<String>() {
+        //String url ="Fill_List_Detail.php?f=datos&ci="+spinnerCat.getSelectedItem().toString()+"&ca="+spinnerCd.getSelectedItem().toString();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES+URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.length()>0){
@@ -192,8 +195,20 @@ public class seleccion_categoria extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
 
             }
-        });
-        queue.add(stringRequest);
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String>parametros=new HashMap<>();
+                parametros.put("Categoria",spinnerCat.getSelectedItem().toString());
+                parametros.put("Ciudad",spinnerCd.getSelectedItem().toString());
+
+                return parametros;
+            }
+        }  ;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
 
     }
     public void  obtenerLista(JSONArray jsonArray){
