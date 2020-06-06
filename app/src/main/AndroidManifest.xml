@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".seleccion_categoria"></activity>
+        <activity android:name=".detalle_producto"></activity>
+        <activity android:name=".listado_producto" />
+        <activity android:name=".seleccion_categoria" />
         <activity android:name=".Home_activity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Nueva_Solicitud" />

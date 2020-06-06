@@ -19,7 +19,7 @@ public class Home_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_activity);
-        cajaBienvenido=(TextView)findViewById(R.id.txt_bienvenida);
+        cajaBienvenido=(TextView)findViewById(R.id.txt_Producto);
         recuperarPreferencias();
         btnSolicitud = (Button)findViewById(R.id.btn_Buscar_Solicitud);
 

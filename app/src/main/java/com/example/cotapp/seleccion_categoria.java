@@ -2,6 +2,9 @@ package com.example.cotapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,8 +43,7 @@ public class seleccion_categoria extends AppCompatActivity {
     List<String>listaCiudades;
     List<String>listaSolicitud;
     List<String>listaDescripcion;
-    private  String soledad;
-    private  String edades []= {"10","20"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_seleccion_categoria);
@@ -171,7 +173,6 @@ public class seleccion_categoria extends AppCompatActivity {
 // ---------------------------------------------------------------------------------------------------------------------//
     public void cargarLista(String URL){
         RequestQueue queue = Volley.newRequestQueue(this);
-        //String url ="Fill_List_Detail.php?f=datos&ci="+spinnerCat.getSelectedItem().toString()+"&ca="+spinnerCd.getSelectedItem().toString();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES+URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -186,8 +187,6 @@ public class seleccion_categoria extends AppCompatActivity {
                     }
 
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -203,7 +202,6 @@ public class seleccion_categoria extends AppCompatActivity {
                 Map<String,String>parametros=new HashMap<>();
                 parametros.put("Categoria",spinnerCat.getSelectedItem().toString());
                 parametros.put("Ciudad",spinnerCd.getSelectedItem().toString());
-
                 return parametros;
             }
         }  ;
@@ -214,7 +212,7 @@ public class seleccion_categoria extends AppCompatActivity {
     public void  obtenerLista(JSONArray jsonArray){
         listaSolicitud = new ArrayList<String>();
         listaDescripcion = new ArrayList<String>();
-        // map<int, string>  puedes tener  ID con un string
+
         for(int i=0; i<jsonArray.length(); i++){
         try{
         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -236,9 +234,14 @@ public class seleccion_categoria extends AppCompatActivity {
         lsvDetalle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 @Override
 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        tv1.setText("La "+lsvDetalle.getItemAtPosition(position)+"hola"+ listaSolicitud.get(position) +"mundo");
-
-
+    SharedPreferences preferences=getSharedPreferences("preferenciasnumerosolicitud", Context.MODE_PRIVATE );
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString("numero",listaSolicitud.get(position) );
+    editor.commit();
+    Intent intent = new Intent(getApplicationContext(), listado_producto.class);
+    startActivity(intent);
+    finish();
+       // tv1.setText("La "+lsvDetalle.getItemAtPosition(position)+"hola"+ listaSolicitud.get(position) +"mundo");
         }
         });
         }
