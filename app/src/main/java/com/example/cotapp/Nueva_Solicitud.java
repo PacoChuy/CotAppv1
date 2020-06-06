@@ -245,7 +245,7 @@ public class Nueva_Solicitud extends AppCompatActivity {
                 Map<String,String>parametros=new HashMap<>();
                 parametros.put("Nombre_Solicitud",txt_nombre.getText().toString());
                 parametros.put("Fecha_Fin",txt_Fecha.getText().toString());
-                 parametros.put("usuario",usuarios);
+                parametros.put("usuario",usuarios);
                 parametros.put("credito",spinnerCre.getSelectedItem().toString());
                 parametros.put("categoria",spinnerCat.getSelectedItem().toString());
                 parametros.put("num_cotizacion",txt_coti.getText().toString());

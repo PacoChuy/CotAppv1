@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sp_ciudad" />
 
     <ListView
-        android:id="@+id/lsv_Lista"
+        android:id="@+id/lsv_Lista_Producto"
         android:layout_width="370dp"
         android:layout_height="294dp"
         android:layout_marginStart="16dp"
@@ -93,6 +93,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/lsv_Lista" />
+        app:layout_constraintTop_toBottomOf="@+id/lsv_Lista_Producto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

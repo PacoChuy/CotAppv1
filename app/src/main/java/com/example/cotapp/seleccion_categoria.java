@@ -49,7 +49,7 @@ public class seleccion_categoria extends AppCompatActivity {
         setContentView(R.layout.activity_seleccion_categoria);
         spinnerCat=(Spinner)findViewById(R.id.sp_Categoria);
         spinnerCd=(Spinner)findViewById(R.id.sp_ciudad);
-        lsvDetalle=(ListView)findViewById(R.id.lsv_Lista);
+        lsvDetalle=(ListView)findViewById(R.id.lsv_Lista_Producto);
         btnBuscar=(Button) findViewById(R.id.btn_Buscar);
         tv1=(TextView)findViewById(R.id.tv1);
 
@@ -172,7 +172,7 @@ public class seleccion_categoria extends AppCompatActivity {
     //-------------------------CARGA  lISTA DE SOLICITUD -------------------------------------------------------------------//
 // ---------------------------------------------------------------------------------------------------------------------//
     public void cargarLista(String URL){
-        RequestQueue queue = Volley.newRequestQueue(this);
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES+URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -234,11 +234,11 @@ public class seleccion_categoria extends AppCompatActivity {
         lsvDetalle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 @Override
 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-    SharedPreferences preferences=getSharedPreferences("preferenciasnumerosolicitud", Context.MODE_PRIVATE );
+    SharedPreferences preferences=getSharedPreferences("preferenciasnumero", Context.MODE_PRIVATE );
     SharedPreferences.Editor editor = preferences.edit();
     editor.putString("numero",listaSolicitud.get(position) );
     editor.commit();
-    Intent intent = new Intent(getApplicationContext(), listado_producto.class);
+    Intent intent = new Intent(getApplicationContext(), detalle_producto.class);
     startActivity(intent);
     finish();
        // tv1.setText("La "+lsvDetalle.getItemAtPosition(position)+"hola"+ listaSolicitud.get(position) +"mundo");

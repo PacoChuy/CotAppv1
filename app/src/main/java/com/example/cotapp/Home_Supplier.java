@@ -20,7 +20,7 @@ public class Home_Supplier extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__supplier);
-        cajaBienvenido=(TextView)findViewById(R.id.txt_Producto);
+        cajaBienvenido=(TextView)findViewById(R.id.txt_solicitud);
         btnSolicitud=(Button)findViewById(R.id.btn_Buscar_Solicitud);
         recuperarPreferencias();
 
