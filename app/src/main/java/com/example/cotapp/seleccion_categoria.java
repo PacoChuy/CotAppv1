@@ -37,7 +37,7 @@ public class seleccion_categoria extends AppCompatActivity {
     Spinner spinnerCd;
     ListView lsvDetalle;
     Button btnBuscar;
-    TextView tv1;
+
 
     List<String> listaCategoria;
     List<String>listaCiudades;
@@ -51,7 +51,7 @@ public class seleccion_categoria extends AppCompatActivity {
         spinnerCd=(Spinner)findViewById(R.id.sp_ciudad);
         lsvDetalle=(ListView)findViewById(R.id.lsv_Lista_Producto);
         btnBuscar=(Button) findViewById(R.id.btn_Buscar);
-        tv1=(TextView)findViewById(R.id.tv1);
+
 
         cargarCategoria();
         cargarCiudad();
